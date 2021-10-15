@@ -35,7 +35,7 @@ class StudentSeeder extends Seeder
             'name' => 'Mareta Rosa Anjellina',
             'class' => 'MI-2E',
             'department' => 'JTI',
-            'phone_number' => '085806259859',
+            'phone_number' => '089601517838',
         ]);
     }
 }
