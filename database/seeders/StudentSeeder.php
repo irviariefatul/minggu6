@@ -27,7 +27,7 @@ class StudentSeeder extends Seeder
             'name' => 'Luvi Anggraini',
             'class' => 'MI-2E',
             'department' => 'JTI',
-            'phone_number' => '081335098272',
+            'phone_number' => '085806259859',
         ]);
 
         DB::table('students')->insert([
@@ -35,7 +35,7 @@ class StudentSeeder extends Seeder
             'name' => 'Mareta Rosa Anjellina',
             'class' => 'MI-2E',
             'department' => 'JTI',
-            'phone_number' => '081335098272',
+            'phone_number' => '085806259859',
         ]);
     }
 }
