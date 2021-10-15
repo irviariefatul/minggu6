@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return view('students.index',['student'=>$students]);
+        return view('students.index', ['student' => $students]);
     }
 
     /**
@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //add data
+        Student::create($request->all());
+
+        // if true, redirect to index
+        return redirect()->route('students.index')
+            ->with('success', 'Add data success!');
     }
 
     /**
