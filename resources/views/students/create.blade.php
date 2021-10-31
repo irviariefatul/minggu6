@@ -8,11 +8,11 @@
                 <div class="card-header">{{ __('Add Student Data') }}</div>
 
                 <div class="card-body">
-                     @if (session('status'))
-                         <div class="alert alert-success" role="alert">
-                             {{ session('status') }}
-                         </div>
-                     @endif
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
 
                     <form action="/students" method="post">
                         @csrf
@@ -26,7 +26,11 @@
                         </div>
                         <div class="form-group">
                             <label for="class">Class</label>
-                            <input type="text" class="form-control" required="required" name="class"></br>
+                            <select class="form-control" name="Kelas">
+                                @foreach($kelas as $class)
+                                <option value="{{$class->id}}"> {{ $class->class_name }} </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="department">Department</label>
