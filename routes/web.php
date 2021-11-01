@@ -30,4 +30,8 @@ Route::get('/search/student', [StudentController::class, 'searchStudent'])->name
 Route::resource('users', UserController::class);
 Route::get('/search/user', [UserController::class, 'searchUser'])->name('searchU');
 
+// Melihat halaman Nilai
 Route::get('students/{id}/detail', [StudentController::class, 'detail']); 
+
+// Print PDF
+Route::get('/students/{id}/report', [StudentController::class,'report']);

@@ -8,9 +8,9 @@
                 <div class="card-header">{{ __('STUDENT SCORE') }}</div>
 
                 <div class="card-body">
-                    <b>Name</b>     : {{ $student->name }}<br>
-                    <b>NIM</b>      : {{ $student->nim }}<br>
-                    <b>Class</b>    : {{ $student->kelas->class_name}}<br>
+                    <b>Name</b> : {{ $student->name }}<br>
+                    <b>NIM</b>  : {{ $student->nim }}<br>
+                    <b>Class</b> : {{ $student->kelas->class_name}}<br>
 
                     <table class="table table-responsive table-striped">
                         <thead>
@@ -32,6 +32,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="/students/{{$student->id}}/report" class="btn btn-primary float-right" target="_blank">PRINT PDF</a>
                 </div>
             </div>
         </div>
