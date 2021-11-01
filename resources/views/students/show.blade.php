@@ -17,6 +17,7 @@
                     <form action="/students/{{$student->id}}" method="get">
                     @csrf
                         <table class="table table-responsive">
+                            <img width="200px" src="{{asset('storage/'. $student->photo)}}"><br><br>
                             <tr><th>NIM</th><th>:</th><td>{{ $student -> nim}}</td></tr>
                             <tr><th>Name</th><th>:</th><td>{{ $student -> name}}</td></tr>
                             <tr><th>Class</th><th>:</th><td>{{ $student -> kelas->class_name}}</td></tr>
