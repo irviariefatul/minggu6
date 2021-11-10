@@ -43,11 +43,10 @@ class StudentController extends Controller
         //add data
         $student = new Student;
 
-        if($request->file('photo'))
-        {
-            $image_name = $request->file('photo')->store('images','public');
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('images', 'public');
         }
-        
+
         $student->nim = $request->nim;
         $student->name = $request->name;
         $student->department = $request->department;
@@ -87,7 +86,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $kelas = Kelas::all();
-        return view('students.edit', ['student' => $student, 'kelas'=>$kelas]);
+        return view('students.edit', ['student' => $student, 'kelas' => $kelas]);
     }
 
     /**
@@ -104,11 +103,10 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->department = $request->department;
         $student->phone_number = $request->phone_number;
-        if ($student->photo && file_exists(storage_path('app/public/'. $student->photo)))
-        {
-            \Storage::delete('public/'. $student->photo);
+        if ($student->photo && file_exists(storage_path('app/public/' . $student->photo))) {
+            \Storage::delete('public/' . $student->photo);
         }
-        $image_name = $request->file('photo')->store('images','public');
+        $image_name = $request->file('photo')->store('images', 'public');
         $student->photo = $image_name;
 
         $kelas = new Kelas;
@@ -118,7 +116,6 @@ class StudentController extends Controller
         $student->save();
 
         return redirect()->route('students.index');
-
     }
 
     /**
@@ -147,9 +144,15 @@ class StudentController extends Controller
         return view('students.detail', ['student' => $student]);
     }
 
-    public function report($id){
+    public function report($id)
+    {
         $student = Student::find($id);
-        $pdf = PDF::loadview('students.report',['student'=>$student]);
+        $pdf = PDF::loadview('students.report', ['student' => $student]);
         return $pdf->stream();
-    } 
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

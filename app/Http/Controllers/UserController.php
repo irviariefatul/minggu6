@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -53,7 +54,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show',['user'=>$user]);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -65,7 +66,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit',['user'=>$user]);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -104,5 +105,14 @@ class UserController extends Controller
         $keyword = $request->search;
         $user = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
         return view('users.index', compact('user'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+            if(Gate::allows('manage-users')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
     }
 }
